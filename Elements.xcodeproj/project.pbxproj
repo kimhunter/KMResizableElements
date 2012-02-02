@@ -15,6 +15,7 @@
 		3B22FC2314DAA43B00D2A0D9 /* KMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22FC2214DAA43B00D2A0D9 /* KMAppDelegate.m */; };
 		3B22FC2614DAA43B00D2A0D9 /* KMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22FC2514DAA43B00D2A0D9 /* KMViewController.m */; };
 		3B22FC2914DAA43B00D2A0D9 /* KMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B22FC2714DAA43B00D2A0D9 /* KMViewController.xib */; };
+		3B22FC3514DAC0FD00D2A0D9 /* KMCloseButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +23,17 @@
 		3B22FC1214DAA43B00D2A0D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B22FC1414DAA43B00D2A0D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3B22FC1614DAA43B00D2A0D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3B22FC1A14DAA43B00D2A0D9 /* Elements-Info.plist */ = {isa = PBXFileReference; path = "Elements-Info.plist"; sourceTree = "<group>"; };
+		3B22FC1A14DAA43B00D2A0D9 /* Elements-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Elements-Info.plist"; sourceTree = "<group>"; };
 		3B22FC1C14DAA43B00D2A0D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3B22FC1E14DAA43B00D2A0D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3B22FC2014DAA43B00D2A0D9 /* Elements-Prefix.pch */ = {isa = PBXFileReference; path = "Elements-Prefix.pch"; sourceTree = "<group>"; };
-		3B22FC2114DAA43B00D2A0D9 /* KMAppDelegate.h */ = {isa = PBXFileReference; path = KMAppDelegate.h; sourceTree = "<group>"; };
+		3B22FC2014DAA43B00D2A0D9 /* Elements-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Elements-Prefix.pch"; sourceTree = "<group>"; };
+		3B22FC2114DAA43B00D2A0D9 /* KMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMAppDelegate.h; sourceTree = "<group>"; };
 		3B22FC2214DAA43B00D2A0D9 /* KMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMAppDelegate.m; sourceTree = "<group>"; };
-		3B22FC2414DAA43B00D2A0D9 /* KMViewController.h */ = {isa = PBXFileReference; path = KMViewController.h; sourceTree = "<group>"; };
+		3B22FC2414DAA43B00D2A0D9 /* KMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMViewController.h; sourceTree = "<group>"; };
 		3B22FC2514DAA43B00D2A0D9 /* KMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMViewController.m; sourceTree = "<group>"; };
 		3B22FC2814DAA43B00D2A0D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMViewController.xib; sourceTree = "<group>"; };
+		3B22FC3314DAC0FD00D2A0D9 /* KMCloseButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCloseButtonView.h; sourceTree = "<group>"; };
+		3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCloseButtonView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +53,7 @@
 		3B22FC0314DAA43B00D2A0D9 = {
 			isa = PBXGroup;
 			children = (
+				3B22FC3214DAC0FD00D2A0D9 /* src */,
 				3B22FC1814DAA43B00D2A0D9 /* Elements */,
 				3B22FC1114DAA43B00D2A0D9 /* Frameworks */,
 				3B22FC0F14DAA43B00D2A0D9 /* Products */,
@@ -96,6 +100,15 @@
 				3B22FC2014DAA43B00D2A0D9 /* Elements-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B22FC3214DAC0FD00D2A0D9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3B22FC3314DAC0FD00D2A0D9 /* KMCloseButtonView.h */,
+				3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +177,7 @@
 				3B22FC1F14DAA43B00D2A0D9 /* main.m in Sources */,
 				3B22FC2314DAA43B00D2A0D9 /* KMAppDelegate.m in Sources */,
 				3B22FC2614DAA43B00D2A0D9 /* KMViewController.m in Sources */,
+				3B22FC3514DAC0FD00D2A0D9 /* KMCloseButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +251,8 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Elements/Elements-Prefix.pch";
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = "Elements/Elements-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -248,6 +264,8 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Elements/Elements-Prefix.pch";
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = NO;
 				INFOPLIST_FILE = "Elements/Elements-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
