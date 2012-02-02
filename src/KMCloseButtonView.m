@@ -127,4 +127,21 @@
     CGContextRestoreGState(context);
 }
 
+
+// Generate an image from this view
++ (UIImage *)imageWithSize:(CGSize)size
+{
+    CGRect rect = CGRectZero;
+    UIImage *image = nil;
+    
+    rect.size = size;
+    KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:rect];
+    v.bounds = rect;
+    image = v.image;
+    [v release];
+    
+    return image;
+}
+
+
 @end

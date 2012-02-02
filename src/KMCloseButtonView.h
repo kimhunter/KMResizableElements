@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface KMCloseButtonView : UIView
+
 @property (nonatomic, retain) UIColor *outerCircleColor;
 @property (nonatomic, retain) UIColor *innerCircleColor;
 @property (nonatomic, retain) UIColor *crossColor;
 @property (nonatomic, assign) BOOL drawShadow;
+
 @property (readonly) UIImage *image;
 
 @end
