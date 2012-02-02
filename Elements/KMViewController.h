@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface KMViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

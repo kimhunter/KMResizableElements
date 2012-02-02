@@ -7,8 +7,10 @@
 //
 
 #import "KMViewController.h"
+#import "KMCloseButtonView.h"
 
 @implementation KMViewController
+@synthesize imageView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -26,6 +28,7 @@
 
 - (void)viewDidUnload
 {
+    [self setImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -33,6 +36,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    KMCloseButtonView *cls = [[KMCloseButtonView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    cls.bounds = cls.frame;
+    imageView.image = [cls image];
     [super viewWillAppear:animated];
 }
 
@@ -57,4 +63,8 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)dealloc {
+    [imageView release];
+    [super dealloc];
+}
 @end
