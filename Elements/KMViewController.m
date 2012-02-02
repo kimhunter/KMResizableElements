@@ -36,8 +36,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Use defaults like this 
+    //imageView.image = [KMCloseButtonView imageWithSize:imageView.frame.size];
     
-    imageView.image = [KMCloseButtonView imageWithSize:imageView.frame.size];
+    // or pass a bock in to setup the view
+    imageView.image = [KMCloseButtonView imageWithSize:imageView.frame.size andBlock:^(KMCloseButtonView *btnView) {
+        btnView.innerCircleColor = [UIColor redColor];
+    }];
     [super viewWillAppear:animated];
 }
 
