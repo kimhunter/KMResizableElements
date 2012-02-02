@@ -13,4 +13,6 @@
 @property (nonatomic, retain) UIColor *innerCircleColor;
 @property (nonatomic, retain) UIColor *crossColor;
 @property (nonatomic, assign) BOOL drawShadow;
+@property (readonly) UIImage *image;
+
 @end

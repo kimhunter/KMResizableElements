@@ -58,6 +58,15 @@
     drawShadow = YES;
 }
 
+- (UIImage *)image
+{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    [self drawRect:self.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
