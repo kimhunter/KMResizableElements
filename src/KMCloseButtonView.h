@@ -17,4 +17,6 @@
 
 @property (readonly) UIImage *image;
 
++ (UIImage *)imageWithSize:(CGSize)size;
+
 @end

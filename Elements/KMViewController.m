@@ -36,9 +36,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    KMCloseButtonView *cls = [[KMCloseButtonView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    cls.bounds = cls.frame;
-    imageView.image = [cls image];
+    
+    imageView.image = [KMCloseButtonView imageWithSize:imageView.frame.size];
     [super viewWillAppear:animated];
 }
 
