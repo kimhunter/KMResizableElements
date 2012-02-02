@@ -140,6 +140,20 @@
     
     return image;
 }
++ (UIImage *)imageWithSize:(CGSize)size andBlock:(void (^)(KMCloseButtonView *btnView))settingBlock
+{
+    UIImage *image = nil;
+    CGRect rect = CGRectZero;
+    rect.size = size;
+    KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:rect];
+    v.bounds = rect;
+    
+    settingBlock(v);    
 
+    image = v.image;
+    [v release];
+    return image;
+
+}
 
 @end

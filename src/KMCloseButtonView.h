@@ -18,5 +18,6 @@
 @property (readonly) UIImage *image;
 
 + (UIImage *)imageWithSize:(CGSize)size;
-
+//pass a block in to setup the colors/shadow blah
++ (UIImage *)imageWithSize:(CGSize)size andBlock:(void (^)(KMCloseButtonView *btnView))settingBlock;
 @end
