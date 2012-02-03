@@ -69,7 +69,6 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    UIBezierPath *outer, *inner;
     CGRect r = self.bounds;
     CGFloat offset = 0.87f;
     CGRect innerRect;
