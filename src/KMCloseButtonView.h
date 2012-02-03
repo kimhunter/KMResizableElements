@@ -1,10 +1,10 @@
 //
 //  KMCloseButtonView.h
-//  Elements
+//  KMResizableElements
 //
 //  Created by Kim Hunter on 2/02/12.
 //  Copyright (c) 2012 Kim Hunter. All rights reserved.
-//
+// 
 
 #import <UIKit/UIKit.h>
 
