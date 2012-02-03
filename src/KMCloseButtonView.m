@@ -129,28 +129,24 @@
 // Generate an image from this view
 + (UIImage *)imageWithSize:(CGSize)size
 {
-    CGRect rect = CGRectZero;
     UIImage *image = nil;
-    
-    rect.size = size;
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);    
     KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:rect];
-    v.bounds = rect;
     image = v.image;
     [v release];
     
     return image;
 }
+
 + (UIImage *)imageWithSize:(CGSize)size andBlock:(void (^)(KMCloseButtonView *btnView))settingBlock
 {
     UIImage *image = nil;
-    CGRect rect = CGRectZero;
-    rect.size = size;
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
     KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:rect];
-    v.bounds = rect;
+    settingBlock(v);
     
-    settingBlock(v);    
-
-    image = v.image;
+    image = [v image];
+    
     [v release];
     return image;
 
