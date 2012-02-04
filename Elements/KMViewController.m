@@ -8,6 +8,7 @@
 
 #import "KMViewController.h"
 #import "KMCloseButtonView.h"
+#import "KMCounterView.h"
 
 @implementation KMViewController
 @synthesize imageView;
@@ -24,6 +25,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    KMCounterView *counterView = [[KMCounterView alloc] initWithFrame:CGRectMake(-40, -40, 200, 200)];
+    [counterView performSelector:@selector(setText:) withObject:@"5" afterDelay:5.0];
+    [[self view] addSubview:counterView];
+
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

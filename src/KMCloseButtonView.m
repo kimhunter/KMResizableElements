@@ -116,19 +116,17 @@
 
 - (UIImage *)image
 {
-    UIGraphicsBeginImageContext(self.bounds.size);
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [[UIScreen mainScreen] scale]);
     [self drawRect:self.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
 }
-#define RECT_SCALE_FOR_SCREEN(R) (CGRectApplyAffineTransform((R), CGAffineTransformMakeScale([[UIScreen mainScreen] scale], [[UIScreen mainScreen] scale])))
 // Generate an image from this view
 + (UIImage *)imageWithSize:(CGSize)size
 {
     UIImage *image = nil;
     CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
-    rect = RECT_SCALE_FOR_SCREEN(rect);
     KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:rect];
     image = v.image;
     [v release];
@@ -140,9 +138,7 @@
 + (UIImage *)imageWithSize:(CGSize)size andBlock:(void (^)(KMCloseButtonView *btnView))settingBlock
 {
     UIImage *image = nil;
-    CGRect rect = RECT_SCALE_FOR_SCREEN(rect);
-    rect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale([[UIScreen mainScreen] scale], [[UIScreen mainScreen] scale]));
-    KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:rect];
+    KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:CGRectMake(0.0, 0.0, size.width, size.height)];
     settingBlock(v);
     image = [v image];
     [v release];
