@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 None. All rights reserved.
 //
 
-#import "KMDisclosueButtonView.h"
+#import "KMCounterView.h"
 
-@implementation KMDisclosueButtonView
+@implementation KMCounterView
 @synthesize text = _text;
 
 - (void)setText:(NSString *)text
@@ -46,7 +46,7 @@
     CGRect mainRect = CGRectIntegral(CGRectInset(r, r.size.width*insetPercentage, r.size.height*insetPercentage));
     mainRect.origin.y /= 2;  // shift up so shadow isn't cut at bottom
     [[UIColor whiteColor] setStroke];
-    [COLOR_CoolBlue setFill];
+    [[UIColor redColor] setFill];
     CGContextSetLineWidth(context, mainRect.size.width * insetPercentage * 0.8);
 
     CGContextSaveGState(context);
@@ -59,7 +59,7 @@
     {
         CGContextSaveGState(context);
         [[UIColor whiteColor] setFill];
-        CGContextSetShadow(context, CGSizeMake(-1.0, -1.0), 0.0);
+        CGContextSetShadow(context, CGSizeMake(0.0, -1.0), 0.0);
         
         CGFloat fontSize = floorf(mainRect.size.height * 0.76);
         UIFont *font = [UIFont boldSystemFontOfSize: fontSize];
@@ -95,7 +95,7 @@
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locs[] = {0.0f, 1.0f};
     CGColorRef colorRefs[] = {  [[UIColor colorWithWhite:1.0 alpha:0.8] CGColor],
-                                [[UIColor colorWithWhite:1.0 alpha:0.0] CGColor]};
+                                [[UIColor colorWithWhite:1.0 alpha:0.2] CGColor]};
     CFArrayRef colors = CFArrayCreate(NULL, (const void**)colorRefs, sizeof(colorRefs) / sizeof(CGColorRef), &kCFTypeArrayCallBacks);
     CGGradientRef glossGradient = CGGradientCreateWithColors(colorSpace, colors, locs);
     CGColorSpaceRelease(colorSpace);

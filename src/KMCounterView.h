@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KMDisclosueButtonView : UIView
+@interface KMCounterView : UIView
 @property (nonatomic, retain) NSString *text;
 
 @end

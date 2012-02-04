@@ -58,15 +58,6 @@
     drawShadow = YES;
 }
 
-- (UIImage *)image
-{
-    UIGraphicsBeginImageContext(self.bounds.size);
-    [self drawRect:self.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
-
 - (void)drawRect:(CGRect)rect
 {
     CGRect r = self.bounds;
@@ -86,7 +77,7 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(context, YES);
-    
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     // Draw outline circle
     CGContextSaveGState(context);
     if (drawShadow)
@@ -109,8 +100,7 @@
     CGFloat lineWidth = roundf((r.size.width-innerRect.size.width)/2 * 1.3);
     CGContextSetLineWidth(context, lineWidth);
     
-    CGRect clipBounds = CGRectInset(innerRect, innerRect.size.width * 0.2, innerRect.size.width * 0.2);
-    CGRectOffset(rect, (r.size.width - innerRect.size.width)/2, (r.size.height - innerRect.size.height)/2);
+    CGRect clipBounds = CGRectIntegral(CGRectInset(innerRect, innerRect.size.width * 0.2, innerRect.size.width * 0.2));
     CGContextClipToRect(context, clipBounds);
     CGContextBeginPath(context);
     // draw backslash line 
@@ -124,12 +114,21 @@
     CGContextRestoreGState(context);
 }
 
-
+- (UIImage *)image
+{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    [self drawRect:self.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+#define RECT_SCALE_FOR_SCREEN(R) (CGRectApplyAffineTransform((R), CGAffineTransformMakeScale([[UIScreen mainScreen] scale], [[UIScreen mainScreen] scale])))
 // Generate an image from this view
 + (UIImage *)imageWithSize:(CGSize)size
 {
     UIImage *image = nil;
-    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);    
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    rect = RECT_SCALE_FOR_SCREEN(rect);
     KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:rect];
     image = v.image;
     [v release];
@@ -137,15 +136,15 @@
     return image;
 }
 
+// if you don't want this adjusted for the screen then set change the frame in the block
 + (UIImage *)imageWithSize:(CGSize)size andBlock:(void (^)(KMCloseButtonView *btnView))settingBlock
 {
     UIImage *image = nil;
-    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    CGRect rect = RECT_SCALE_FOR_SCREEN(rect);
+    rect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale([[UIScreen mainScreen] scale], [[UIScreen mainScreen] scale]));
     KMCloseButtonView *v = [[KMCloseButtonView alloc] initWithFrame:rect];
     settingBlock(v);
-    
     image = [v image];
-    
     [v release];
     return image;
 
