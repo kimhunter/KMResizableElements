@@ -11,6 +11,7 @@
 
 @implementation KMViewController
 @synthesize imageView;
+@synthesize numberButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -29,6 +30,7 @@
 - (void)viewDidUnload
 {
     [self setImageView:nil];
+    [self setNumberButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -43,6 +45,7 @@
     imageView.image = [KMCloseButtonView imageWithSize:imageView.frame.size andBlock:^(KMCloseButtonView *btnView) {
         btnView.innerCircleColor = [UIColor redColor];
     }];
+    numberButton.text = @"A";
     [super viewWillAppear:animated];
 }
 
@@ -69,6 +72,7 @@
 
 - (void)dealloc {
     [imageView release];
+    [numberButton release];
     [super dealloc];
 }
 @end

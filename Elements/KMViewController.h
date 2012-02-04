@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KMDisclosueButtonView.h"
 
 @interface KMViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
+@property (retain, nonatomic) IBOutlet KMDisclosueButtonView *numberButton;
 
 @end

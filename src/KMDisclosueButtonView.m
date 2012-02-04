@@ -9,44 +9,29 @@
 #import "KMDisclosueButtonView.h"
 
 @implementation KMDisclosueButtonView
-@synthesize number;
-@synthesize timer;
+@synthesize text = _text;
 
-- (void)updateNumber
+- (void)setText:(NSString *)text
 {
-    self.number = number + 1;
-    if (number == 14)
+    if (text != _text && ![text isEqualToString:_text])
     {
-        number = 97;
+        [_text release];
+        _text = [text retain];
+        [self setNeedsDisplay];
     }
-    [self setNeedsDisplay];
+}
+
+- (NSString *)text
+{
+    return [[_text retain] autorelease];
 }
 
 - (void)dealloc
 {
-    [self.timer invalidate];
-    self.timer = nil;
+    [_text release];
     [super dealloc];
 }
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        number = 0;
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.7 target:self selector:@selector(updateNumber) userInfo:nil repeats:YES];
-    }
-    return self;
-}
-- (id)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self)
-    {
-        number = 7;
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateNumber) userInfo:nil repeats:YES];
-    }
-    return self;
-}
+
 #define COLOR_CoolBlue [UIColor colorWithRed:COLOR2PERC(35.f) green:COLOR2PERC(110.0f) blue:COLOR2PERC(216.f) alpha:1.0]
 #define COLOR2PERC(c) ((CGFloat)((c)/255))
 
@@ -60,7 +45,9 @@
     CGColorRef colorRefs[] = { [[UIColor colorWithWhite:1.0 alpha:0.8] CGColor],
                                [[UIColor colorWithWhite:1.0 alpha:0.0] CGColor]};
     CFArrayRef colors = CFArrayCreate(NULL, (const void**)colorRefs, sizeof(colorRefs) / sizeof(CGColorRef), &kCFTypeArrayCallBacks);
-    glossGradient = CGGradientCreateWithColors(colorSpace, colors, locs);    
+    glossGradient = CGGradientCreateWithColors(colorSpace, colors, locs);
+    CGColorSpaceRelease(colorSpace);
+    CFRelease(colors);
     return glossGradient;
 }
 // Only override drawRect: if you perform custom drawing.
@@ -83,28 +70,29 @@
     CGContextDrawPath(context, kCGPathFillStroke);
     CGContextRestoreGState(context);
     
-    CGContextSaveGState(context);
-    [[UIColor whiteColor] setFill];
-    CGContextSetShadow(context, CGSizeMake(-1.0, -1.0), 0.0);
-    NSString *text = [NSString stringWithFormat:@"%d", number];
-    CGFloat fontSize = floorf(mainRect.size.height * 0.76);
-    CGFloat originalSize = fontSize;
-    UIFont *font = [UIFont boldSystemFontOfSize: fontSize];
-    CGRect textRect;
-    UILineBreakMode breakMode = breakMode;
-    CGSize textSize = [text sizeWithFont:font 
-                             minFontSize:2.0 
-                          actualFontSize:&fontSize
-                                forWidth:mainRect.size.width * 0.8 
-                           lineBreakMode:UILineBreakModeTailTruncation];
-    font = [UIFont boldSystemFontOfSize: fontSize];
-    textSize = [text sizeWithFont:font forWidth:textSize.width lineBreakMode:breakMode];
-    textRect.size = textSize;
-    textRect.origin = CGPointMake(CGRectGetMidX(mainRect)-(textSize.width/2), CGRectGetMidY(mainRect)-(font.lineHeight/2));
-    textRect = CGRectIntegral(textRect);
-    [text drawInRect:textRect withFont:font lineBreakMode:breakMode];
-    CGContextRestoreGState(context);
-    
+    if ([_text length] != 0)
+    {
+        CGContextSaveGState(context);
+        [[UIColor whiteColor] setFill];
+        CGContextSetShadow(context, CGSizeMake(-1.0, -1.0), 0.0);
+        
+        CGFloat fontSize = floorf(mainRect.size.height * 0.76);
+        UIFont *font = [UIFont boldSystemFontOfSize: fontSize];
+        CGRect textRect;
+        UILineBreakMode breakMode = UILineBreakModeTailTruncation;
+        CGSize textSize = [_text sizeWithFont:font 
+                                  minFontSize:2.0 
+                               actualFontSize:&fontSize
+                                     forWidth:fontSize 
+                                lineBreakMode:UILineBreakModeTailTruncation];
+        font = [UIFont boldSystemFontOfSize: fontSize];
+        textSize = [_text sizeWithFont:font forWidth:textSize.width lineBreakMode:breakMode];
+        textRect.size = textSize;
+        textRect.origin = CGPointMake(CGRectGetMidX(mainRect)-(textSize.width/2), CGRectGetMidY(mainRect)-(font.lineHeight/2));
+        textRect = CGRectIntegral(textRect);
+        [_text drawInRect:textRect withFont:font lineBreakMode:breakMode];
+        CGContextRestoreGState(context);
+    }
     
     // ===== Apply Gloss =====
     CGContextSaveGState(context);

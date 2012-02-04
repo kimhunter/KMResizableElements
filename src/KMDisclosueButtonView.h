@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface KMDisclosueButtonView : UIView
-
-@property (nonatomic, retain) NSTimer *timer;
-@property (nonatomic, assign) NSInteger number;
-- (void)updateNumber;
+@property (nonatomic, retain) NSString *text;
 
 @end
