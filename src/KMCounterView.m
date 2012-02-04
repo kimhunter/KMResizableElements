@@ -11,6 +11,32 @@
 @implementation KMCounterView
 @synthesize text = _text;
 
+- (void)defaultSettings
+{
+    [self setClearsContextBeforeDrawing:YES];
+    self.backgroundColor = [UIColor clearColor];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        [self defaultSettings];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self)
+    {
+        [self defaultSettings];
+    }
+    return self;
+}
+
 - (void)setText:(NSString *)text
 {
     if (text != _text && ![text isEqualToString:_text])
@@ -39,8 +65,13 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextClearRect(context, rect);
+    CGContextSetAllowsAntialiasing(context, YES);
+
+    
     CGRect r = self.bounds;
     CGFloat insetPercentage = 0.1f;
     CGRect mainRect = CGRectIntegral(CGRectInset(r, r.size.width*insetPercentage, r.size.height*insetPercentage));
@@ -82,8 +113,10 @@
     // ===== Apply Gloss =====
     CGContextSaveGState(context);
     CGContextBeginPath(context); 
-    CGRect glossRect = CGRectOffset(rect, 0.0f, -110.0);
-    glossRect = CGRectInset(glossRect, glossRect.size.width * -0.3, glossRect.size.height * -0.3);
+    CGRect glossRect = rect;
+    glossRect = CGRectIntegral(CGRectInset(glossRect, glossRect.size.width * -0.3, glossRect.size.height * -0.3));
+    glossRect.origin.y = roundf((CGRectGetMidY(mainRect) * 1.3) - glossRect.size.height);
+    
     
     // build intersection of both circles as the clip mask
     CGContextAddEllipseInRect(context, glossRect);
