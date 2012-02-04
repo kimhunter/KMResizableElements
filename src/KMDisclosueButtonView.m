@@ -28,8 +28,8 @@
     CGGradientRef glossGradient;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locs[] = {0.0f, 1.0f};
-    CGColorRef colorRefs[] = { [[UIColor colorWithWhite:1.0 alpha:0.6] CGColor],
-                               [[UIColor colorWithWhite:1.0 alpha:0.3] CGColor]};
+    CGColorRef colorRefs[] = { [[UIColor colorWithWhite:1.0 alpha:0.9] CGColor],
+                               [[UIColor colorWithWhite:1.0 alpha:0.0] CGColor]};
     CFArrayRef colors = CFArrayCreate(NULL, (const void**)colorRefs, sizeof(colorRefs) / sizeof(CGColorRef), &kCFTypeArrayCallBacks);
     glossGradient = CGGradientCreateWithColors(colorSpace, colors, locs);    
     return glossGradient;
@@ -53,17 +53,21 @@
     CGContextSaveGState(context);
 
     CGContextBeginPath(context); 
-    CGRect glossRect = CGRectOffset(rect, 0.0f, -60.0);
+    CGRect glossRect = CGRectOffset(rect, 0.0f, -110.0);
+    glossRect = CGRectInset(glossRect, glossRect.size.width * -0.3, glossRect.size.height * -0.3);
     
+    // build intersection of both circles as the clip mask
     CGContextAddEllipseInRect(context, glossRect);
     CGContextClip(context);
+    // this rect is on the outsid of the border circle
     CGContextAddEllipseInRect(context, CGRectInset(mainRect, mainRect.size.width * insetPercentage * -0.8/2, mainRect.size.width * insetPercentage * -0.8/2));
     CGContextClip(context);
-    CGContextDrawLinearGradient(context, [self glossGradient], glossRect.origin, CGPointMake(glossRect.origin.x, CGRectGetMaxY(glossRect)), kCGGradientDrawsBeforeStartLocation);
-
     
-
-    CGContextClosePath(context);
+    // draw gradient
+    CGContextDrawLinearGradient(context, [self glossGradient], r.origin, 
+                                                               CGPointMake(0.0, CGRectGetMaxY(glossRect)), 
+                                                               kCGGradientDrawsBeforeStartLocation);
+    CGContextSetShadow(context, CGSizeMake(2.3, 4.2), 5.0);
     CGContextRestoreGState(context);
 
     
