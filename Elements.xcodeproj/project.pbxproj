@@ -16,6 +16,7 @@
 		3B22FC2614DAA43B00D2A0D9 /* KMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22FC2514DAA43B00D2A0D9 /* KMViewController.m */; };
 		3B22FC2914DAA43B00D2A0D9 /* KMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B22FC2714DAA43B00D2A0D9 /* KMViewController.xib */; };
 		3B22FC3514DAC0FD00D2A0D9 /* KMCloseButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */; };
+		3BC2CCE414DCB2BA00CC89E3 /* KMDisclosueButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2CCE314DCB2BA00CC89E3 /* KMDisclosueButtonView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		3B22FC2814DAA43B00D2A0D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMViewController.xib; sourceTree = "<group>"; };
 		3B22FC3314DAC0FD00D2A0D9 /* KMCloseButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCloseButtonView.h; sourceTree = "<group>"; };
 		3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCloseButtonView.m; sourceTree = "<group>"; };
+		3BC2CCE214DCB2BA00CC89E3 /* KMDisclosueButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDisclosueButtonView.h; sourceTree = "<group>"; };
+		3BC2CCE314DCB2BA00CC89E3 /* KMDisclosueButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMDisclosueButtonView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 			children = (
 				3B22FC3314DAC0FD00D2A0D9 /* KMCloseButtonView.h */,
 				3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */,
+				3BC2CCE214DCB2BA00CC89E3 /* KMDisclosueButtonView.h */,
+				3BC2CCE314DCB2BA00CC89E3 /* KMDisclosueButtonView.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 				3B22FC2314DAA43B00D2A0D9 /* KMAppDelegate.m in Sources */,
 				3B22FC2614DAA43B00D2A0D9 /* KMViewController.m in Sources */,
 				3B22FC3514DAC0FD00D2A0D9 /* KMCloseButtonView.m in Sources */,
+				3BC2CCE414DCB2BA00CC89E3 /* KMDisclosueButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +297,7 @@
 				3B22FC2E14DAA43B00D2A0D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
