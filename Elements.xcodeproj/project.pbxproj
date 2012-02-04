@@ -17,6 +17,7 @@
 		3B22FC2914DAA43B00D2A0D9 /* KMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B22FC2714DAA43B00D2A0D9 /* KMViewController.xib */; };
 		3B22FC3514DAC0FD00D2A0D9 /* KMCloseButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */; };
 		3BC2CCE414DCB2BA00CC89E3 /* KMDisclosueButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2CCE314DCB2BA00CC89E3 /* KMDisclosueButtonView.m */; };
+		3BC2CCE714DCB2E900CC89E3 /* disclosue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC2CCE614DCB2E900CC89E3 /* disclosue.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCloseButtonView.m; sourceTree = "<group>"; };
 		3BC2CCE214DCB2BA00CC89E3 /* KMDisclosueButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDisclosueButtonView.h; sourceTree = "<group>"; };
 		3BC2CCE314DCB2BA00CC89E3 /* KMDisclosueButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMDisclosueButtonView.m; sourceTree = "<group>"; };
+		3BC2CCE614DCB2E900CC89E3 /* disclosue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosue.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		3B22FC1914DAA43B00D2A0D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3BC2CCE614DCB2E900CC89E3 /* disclosue.png */,
 				3B22FC1A14DAA43B00D2A0D9 /* Elements-Info.plist */,
 				3B22FC1B14DAA43B00D2A0D9 /* InfoPlist.strings */,
 				3B22FC1E14DAA43B00D2A0D9 /* main.m */,
@@ -169,6 +172,7 @@
 			files = (
 				3B22FC1D14DAA43B00D2A0D9 /* InfoPlist.strings in Resources */,
 				3B22FC2914DAA43B00D2A0D9 /* KMViewController.xib in Resources */,
+				3BC2CCE714DCB2E900CC89E3 /* disclosue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
