@@ -10,4 +10,8 @@
 
 @interface KMDisclosueButtonView : UIView
 
+@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, assign) NSInteger number;
+- (void)updateNumber;
+
 @end

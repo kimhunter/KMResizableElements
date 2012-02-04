@@ -9,12 +9,41 @@
 #import "KMDisclosueButtonView.h"
 
 @implementation KMDisclosueButtonView
+@synthesize number;
+@synthesize timer;
 
+- (void)updateNumber
+{
+    self.number = number + 1;
+    if (number == 14)
+    {
+        number = 97;
+    }
+    [self setNeedsDisplay];
+}
+
+- (void)dealloc
+{
+    [self.timer invalidate];
+    self.timer = nil;
+    [super dealloc];
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        number = 0;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.7 target:self selector:@selector(updateNumber) userInfo:nil repeats:YES];
+    }
+    return self;
+}
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self)
+    {
+        number = 7;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateNumber) userInfo:nil repeats:YES];
     }
     return self;
 }
@@ -28,7 +57,7 @@
     CGGradientRef glossGradient;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locs[] = {0.0f, 1.0f};
-    CGColorRef colorRefs[] = { [[UIColor colorWithWhite:1.0 alpha:0.9] CGColor],
+    CGColorRef colorRefs[] = { [[UIColor colorWithWhite:1.0 alpha:0.8] CGColor],
                                [[UIColor colorWithWhite:1.0 alpha:0.0] CGColor]};
     CFArrayRef colors = CFArrayCreate(NULL, (const void**)colorRefs, sizeof(colorRefs) / sizeof(CGColorRef), &kCFTypeArrayCallBacks);
     glossGradient = CGGradientCreateWithColors(colorSpace, colors, locs);    
@@ -55,7 +84,30 @@
     CGContextRestoreGState(context);
     
     CGContextSaveGState(context);
-
+    [[UIColor whiteColor] setFill];
+    CGContextSetShadow(context, CGSizeMake(-1.0, -1.0), 0.0);
+    NSString *text = [NSString stringWithFormat:@"%d", number];
+    CGFloat fontSize = floorf(mainRect.size.height * 0.76);
+    CGFloat originalSize = fontSize;
+    UIFont *font = [UIFont boldSystemFontOfSize: fontSize];
+    CGRect textRect;
+    UILineBreakMode breakMode = breakMode;
+    CGSize textSize = [text sizeWithFont:font 
+                             minFontSize:2.0 
+                          actualFontSize:&fontSize
+                                forWidth:mainRect.size.width * 0.8 
+                           lineBreakMode:UILineBreakModeTailTruncation];
+    font = [UIFont boldSystemFontOfSize: fontSize];
+    textSize = [text sizeWithFont:font forWidth:textSize.width lineBreakMode:breakMode];
+    textRect.size = textSize;
+    textRect.origin = CGPointMake(CGRectGetMidX(mainRect)-(textSize.width/2), CGRectGetMidY(mainRect)-(font.lineHeight/2));
+    textRect = CGRectIntegral(textRect);
+    [text drawInRect:textRect withFont:font lineBreakMode:breakMode];
+    CGContextRestoreGState(context);
+    
+    
+    // ===== Apply Gloss =====
+    CGContextSaveGState(context);
     CGContextBeginPath(context); 
     CGRect glossRect = CGRectOffset(rect, 0.0f, -110.0);
     glossRect = CGRectInset(glossRect, glossRect.size.width * -0.3, glossRect.size.height * -0.3);
@@ -69,7 +121,7 @@
     
     // draw gradient
     CGContextDrawLinearGradient(context, [self glossGradient], r.origin, 
-                                                               CGPointMake(0.0, CGRectGetMaxY(glossRect)), 
+                                                               CGPointMake(0.0, CGRectGetMaxY(glossRect)+2), 
                                                                kCGGradientDrawsBeforeStartLocation);
     CGContextRestoreGState(context);
 
