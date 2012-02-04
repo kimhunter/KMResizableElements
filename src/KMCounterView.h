@@ -10,5 +10,7 @@
 
 @interface KMCounterView : UIView
 @property (nonatomic, retain) NSString *text;
+@property (nonatomic, retain) UIColor *innerColor;
+@property (nonatomic, retain) UIColor *outerColor;
 
 @end

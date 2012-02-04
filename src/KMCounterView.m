@@ -10,6 +10,8 @@
 
 @implementation KMCounterView
 @synthesize text = _text;
+@synthesize innerColor = _innerColor;
+@synthesize outerColor = _outerColor;
 
 - (void)defaultSettings
 {
@@ -55,6 +57,8 @@
 - (void)dealloc
 {
     [_text release];
+    [_innerColor release];
+    [_outerColor release];
     [super dealloc];
 }
 
@@ -76,8 +80,9 @@
     CGFloat insetPercentage = 0.1f;
     CGRect mainRect = CGRectIntegral(CGRectInset(r, r.size.width*insetPercentage, r.size.height*insetPercentage));
     mainRect.origin.y /= 2;  // shift up so shadow isn't cut at bottom
-    [[UIColor whiteColor] setStroke];
-    [[UIColor redColor] setFill];
+    
+    [(_outerColor ?: [UIColor whiteColor]) setStroke];
+    [(_innerColor ?: [UIColor redColor]) setFill];
     CGContextSetLineWidth(context, mainRect.size.width * insetPercentage * 0.8);
 
     CGContextSaveGState(context);
@@ -89,7 +94,7 @@
     if ([_text length] != 0)
     {
         CGContextSaveGState(context);
-        [[UIColor whiteColor] setFill];
+        [(_outerColor ?: [UIColor whiteColor]) setFill];
         CGContextSetShadow(context, CGSizeMake(0.0, -1.0), 0.0);
         
         CGFloat fontSize = floorf(mainRect.size.height * 0.76);
@@ -138,10 +143,8 @@
     CGContextDrawLinearGradient(context, glossGradient, r.origin, CGPointMake(0.0, CGRectGetMaxY(glossRect)+2), kCGGradientDrawsBeforeStartLocation);
     CGGradientRelease(glossGradient);
     CGContextRestoreGState(context);
-
-    
-    
 }
+
 
 
 @end
