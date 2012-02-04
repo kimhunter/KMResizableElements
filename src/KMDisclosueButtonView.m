@@ -35,21 +35,6 @@
 #define COLOR_CoolBlue [UIColor colorWithRed:COLOR2PERC(35.f) green:COLOR2PERC(110.0f) blue:COLOR2PERC(216.f) alpha:1.0]
 #define COLOR2PERC(c) ((CGFloat)((c)/255))
 
-
-
-- (CGGradientRef)glossGradient
-{
-    CGGradientRef glossGradient;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGFloat locs[] = {0.0f, 1.0f};
-    CGColorRef colorRefs[] = { [[UIColor colorWithWhite:1.0 alpha:0.8] CGColor],
-                               [[UIColor colorWithWhite:1.0 alpha:0.0] CGColor]};
-    CFArrayRef colors = CFArrayCreate(NULL, (const void**)colorRefs, sizeof(colorRefs) / sizeof(CGColorRef), &kCFTypeArrayCallBacks);
-    glossGradient = CGGradientCreateWithColors(colorSpace, colors, locs);
-    CGColorSpaceRelease(colorSpace);
-    CFRelease(colors);
-    return glossGradient;
-}
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
@@ -107,10 +92,18 @@
     CGContextAddEllipseInRect(context, CGRectInset(mainRect, mainRect.size.width * insetPercentage * -0.8/2, mainRect.size.width * insetPercentage * -0.8/2));
     CGContextClip(context);
     
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGFloat locs[] = {0.0f, 1.0f};
+    CGColorRef colorRefs[] = {  [[UIColor colorWithWhite:1.0 alpha:0.8] CGColor],
+                                [[UIColor colorWithWhite:1.0 alpha:0.0] CGColor]};
+    CFArrayRef colors = CFArrayCreate(NULL, (const void**)colorRefs, sizeof(colorRefs) / sizeof(CGColorRef), &kCFTypeArrayCallBacks);
+    CGGradientRef glossGradient = CGGradientCreateWithColors(colorSpace, colors, locs);
+    CGColorSpaceRelease(colorSpace);
+    CFRelease(colors);
+
     // draw gradient
-    CGContextDrawLinearGradient(context, [self glossGradient], r.origin, 
-                                                               CGPointMake(0.0, CGRectGetMaxY(glossRect)+2), 
-                                                               kCGGradientDrawsBeforeStartLocation);
+    CGContextDrawLinearGradient(context, glossGradient, r.origin, CGPointMake(0.0, CGRectGetMaxY(glossRect)+2), kCGGradientDrawsBeforeStartLocation);
+    CGGradientRelease(glossGradient);
     CGContextRestoreGState(context);
 
     
