@@ -43,13 +43,17 @@
     CGRect r = self.bounds;
     CGFloat insetPercentage = 0.1f;
     CGRect mainRect = CGRectIntegral(CGRectInset(r, r.size.width*insetPercentage, r.size.height*insetPercentage));
-
+    mainRect.origin.y /= 2;  // shift up so shadow isn't cut at bottom
     [[UIColor whiteColor] setStroke];
     [COLOR_CoolBlue setFill];
     CGContextSetLineWidth(context, mainRect.size.width * insetPercentage * 0.8);
+
+    CGContextSaveGState(context);
+    CGContextSetShadow(context, CGSizeMake(0.0, 6.0), 10.0);
     CGContextAddEllipseInRect(context, mainRect);
     CGContextDrawPath(context, kCGPathFillStroke);
-
+    CGContextRestoreGState(context);
+    
     CGContextSaveGState(context);
 
     CGContextBeginPath(context); 
@@ -67,7 +71,6 @@
     CGContextDrawLinearGradient(context, [self glossGradient], r.origin, 
                                                                CGPointMake(0.0, CGRectGetMaxY(glossRect)), 
                                                                kCGGradientDrawsBeforeStartLocation);
-    CGContextSetShadow(context, CGSizeMake(2.3, 4.2), 5.0);
     CGContextRestoreGState(context);
 
     
