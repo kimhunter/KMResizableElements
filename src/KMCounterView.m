@@ -67,6 +67,7 @@
 - (void)drawTextCenteredInRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetShouldAntialias(context, YES);
     CGContextSaveGState(context);
     [(_outerColor ?: [UIColor whiteColor]) setFill];
     CGContextSetShadow(context, CGSizeMake(0.0, -1.0), 0.0);
@@ -155,8 +156,8 @@
     
     
 }
-#define COLOR_CoolBlue [UIColor colorWithRed:COLOR2PERC(35.f) green:COLOR2PERC(110.0f) blue:COLOR2PERC(216.f) alpha:1.0]
 #define COLOR2PERC(c) ((CGFloat)((c)/255))
+#define COLOR_CoolBlue [UIColor colorWithRed:COLOR2PERC(35.f) green:COLOR2PERC(110.0f) blue:COLOR2PERC(216.f) alpha:1.0]
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -192,6 +193,42 @@
     }
 }
 
+- (UIImage *)image
+{
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [[UIScreen mainScreen] scale]);
+    [self drawRect:self.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIImage *)imageWithSize:(CGSize)size
+{
+    UIImage *image = nil;
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    KMCounterView *v = [[KMCounterView alloc] initWithFrame:rect];
+    image = v.image;
+    [v release];
+    
+    
+    return image;
+}
+
+// if you don't want this adjusted for the screen then set change the frame in the block
++ (UIImage *)imageWithSize:(CGSize)size andBlock:(void (^)(KMCounterView *btnView))settingBlock
+{
+    UIImage *image = nil;
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    KMCounterView *v = [[KMCounterView alloc] initWithFrame:rect];
+    if (settingBlock)
+    {
+        settingBlock(v);
+    }
+    image = v.image;
+    [v release];
+    
+    return image;
+}
 
 
 @end

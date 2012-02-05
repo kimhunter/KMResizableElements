@@ -19,4 +19,10 @@ typedef enum KMGlossTypeEnum {
 @property (nonatomic, retain) UIColor *innerColor;
 @property (nonatomic, retain) UIColor *outerColor;
 @property (nonatomic, assign) KMGlossType glossType;
+
+@property (readonly) UIImage *image;
++ (UIImage *)imageWithSize:(CGSize)size;
+// if you don't want this adjusted for the screen then set change the frame in the block
++ (UIImage *)imageWithSize:(CGSize)size andBlock:(void (^)(KMCounterView *btnView))settingBlock;
+
 @end
