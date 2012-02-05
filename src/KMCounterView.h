@@ -12,5 +12,5 @@
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) UIColor *innerColor;
 @property (nonatomic, retain) UIColor *outerColor;
-
+@property (nonatomic, assign) BOOL convexShadow;
 @end
