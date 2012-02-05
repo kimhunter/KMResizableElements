@@ -55,6 +55,7 @@
         btnView.innerCircleColor = [UIColor redColor];
     }];
     numberButton.text = @"A";
+    numberButton.convexShadow = YES;
     [super viewWillAppear:animated];
 }
 
