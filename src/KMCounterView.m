@@ -12,10 +12,11 @@
 @synthesize text = _text;
 @synthesize innerColor = _innerColor;
 @synthesize outerColor = _outerColor;
-@synthesize convexShadow;
+@synthesize glossType = _glossType;
 
 - (void)defaultSettings
 {
+    _glossType = KMGlossTypeConvex;
     [self setClearsContextBeforeDrawing:YES];
     self.backgroundColor = [UIColor clearColor];
 }
@@ -113,7 +114,7 @@
     CGColorSpaceRelease(colorSpace);
     CFRelease(colors);
 
-    if (convexShadow)
+    if (_glossType == KMGlossTypeConvex)
     {
         glossRect = CGRectIntegral(CGRectInset(glossRect, glossRect.size.width * -0.3, glossRect.size.height * -0.3));
         glossRect.origin.y = roundf((CGRectGetMidY(mainRect) * 1.3) - glossRect.size.height);
@@ -129,7 +130,7 @@
         // draw gradient
         CGContextDrawLinearGradient(context, glossGradient, CGPointZero, CGPointMake(0.0, CGRectGetMaxY(glossRect)+2), kCGGradientDrawsBeforeStartLocation);    
     }
-    else
+    else if(_glossType == KMGlossTypeConcave)
     {
         CGPoint a, b;
         CGFloat startPointIntAngle = 10.0;
@@ -184,8 +185,11 @@
         [self drawTextCenteredInRect:mainRect];
     }
     
-    // ===== Apply Gloss =====
-    [self drawGlossInRect:mainRect];
+    if (_glossType != KMGlossTypeNone)
+    {
+        // ===== Apply Gloss =====
+        [self drawGlossInRect:mainRect];
+    }
 }
 
 

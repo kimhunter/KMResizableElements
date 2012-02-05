@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef enum KMGlossTypeEnum {
+    KMGlossTypeNone = 0,
+    KMGlossTypeConcave,
+    KMGlossTypeConvex
+} KMGlossType;
+
 
 @interface KMCounterView : UIView
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) UIColor *innerColor;
 @property (nonatomic, retain) UIColor *outerColor;
-@property (nonatomic, assign) BOOL convexShadow;
+@property (nonatomic, assign) KMGlossType glossType;
 @end

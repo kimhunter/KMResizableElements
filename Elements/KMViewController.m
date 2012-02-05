@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    counterView = [[KMCounterView alloc] initWithFrame:CGRectMake(-40, -40, 200, 200)];
+    counterView = [[KMCounterView alloc] initWithFrame:CGRectMake(40, 40, 200, 200)];
     [counterView setText:@"2"];
     [[self view] addSubview:counterView];
 
@@ -55,7 +55,7 @@
         btnView.innerCircleColor = [UIColor redColor];
     }];
     numberButton.text = @"A";
-    numberButton.convexShadow = YES;
+    numberButton.glossType = KMGlossTypeConcave;
     [super viewWillAppear:animated];
 }
 
