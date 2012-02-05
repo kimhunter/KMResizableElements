@@ -122,6 +122,7 @@
     UIGraphicsEndImageContext();
     return image;
 }
+
 // Generate an image from this view
 + (UIImage *)imageWithSize:(CGSize)size
 {

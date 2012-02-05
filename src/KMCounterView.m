@@ -62,6 +62,31 @@
     [super dealloc];
 }
 
+- (void)drawTextCenteredInRect:(CGRect)rect
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    [(_outerColor ?: [UIColor whiteColor]) setFill];
+    CGContextSetShadow(context, CGSizeMake(0.0, -1.0), 0.0);
+    
+    CGFloat fontSize = floorf(rect.size.height * 0.76);
+    UIFont *font = [UIFont boldSystemFontOfSize: fontSize];
+    CGRect textRect;
+    UILineBreakMode breakMode = UILineBreakModeTailTruncation;
+    CGSize textSize = [_text sizeWithFont:font 
+                              minFontSize:2.0 
+                           actualFontSize:&fontSize
+                                 forWidth:fontSize 
+                            lineBreakMode:UILineBreakModeTailTruncation];
+    font = [UIFont boldSystemFontOfSize: fontSize];
+    textSize = [_text sizeWithFont:font forWidth:textSize.width lineBreakMode:breakMode];
+    textRect.size = textSize;
+    textRect.origin = CGPointMake(CGRectGetMidX(rect)-(textSize.width/2), CGRectGetMidY(rect)-(font.lineHeight/2));
+    textRect = CGRectIntegral(textRect);
+    [_text drawInRect:textRect withFont:font lineBreakMode:breakMode];
+    CGContextRestoreGState(context);
+}
+
 #define COLOR_CoolBlue [UIColor colorWithRed:COLOR2PERC(35.f) green:COLOR2PERC(110.0f) blue:COLOR2PERC(216.f) alpha:1.0]
 #define COLOR2PERC(c) ((CGFloat)((c)/255))
 
@@ -71,9 +96,7 @@
 {
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClearRect(context, rect);
     CGContextSetAllowsAntialiasing(context, YES);
-
     
     CGRect r = self.bounds;
     CGFloat insetPercentage = 0.1f;
@@ -92,26 +115,7 @@
     
     if ([_text length] != 0)
     {
-        CGContextSaveGState(context);
-        [(_outerColor ?: [UIColor whiteColor]) setFill];
-        CGContextSetShadow(context, CGSizeMake(0.0, -1.0), 0.0);
-        
-        CGFloat fontSize = floorf(mainRect.size.height * 0.76);
-        UIFont *font = [UIFont boldSystemFontOfSize: fontSize];
-        CGRect textRect;
-        UILineBreakMode breakMode = UILineBreakModeTailTruncation;
-        CGSize textSize = [_text sizeWithFont:font 
-                                  minFontSize:2.0 
-                               actualFontSize:&fontSize
-                                     forWidth:fontSize 
-                                lineBreakMode:UILineBreakModeTailTruncation];
-        font = [UIFont boldSystemFontOfSize: fontSize];
-        textSize = [_text sizeWithFont:font forWidth:textSize.width lineBreakMode:breakMode];
-        textRect.size = textSize;
-        textRect.origin = CGPointMake(CGRectGetMidX(mainRect)-(textSize.width/2), CGRectGetMidY(mainRect)-(font.lineHeight/2));
-        textRect = CGRectIntegral(textRect);
-        [_text drawInRect:textRect withFont:font lineBreakMode:breakMode];
-        CGContextRestoreGState(context);
+        [self drawTextCenteredInRect:mainRect];
     }
     
     // ===== Apply Gloss =====
