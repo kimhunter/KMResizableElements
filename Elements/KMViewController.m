@@ -17,6 +17,7 @@
 }
 @synthesize imageView;
 @synthesize numberButton;
+@synthesize bigImageView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -29,9 +30,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    counterView = [[KMCounterView alloc] initWithFrame:CGRectMake(40, 40, 200, 200)];
+    CGFloat lenWid = 600;
+    counterView = [[KMCounterView alloc] initWithFrame:CGRectMake(80, 90, lenWid, lenWid)];
     [counterView setText:@"2"];
     [[self view] addSubview:counterView];
+    bigImageView.image = [KMCounterView imageWithSize:bigImageView.bounds.size andBlock:^(KMCounterView *btnView) {
+        btnView.glossType = KMGlossTypeConcave;
+        btnView.text = @"M";
+        btnView.innerColor = [UIColor colorWithRed:35.f/255.0 green:110.0f/255.0 blue:(CGFloat)216.f/255 alpha:1.0];
+    }];
 
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -40,6 +47,7 @@
 {
     [self setImageView:nil];
     [self setNumberButton:nil];
+    [self setBigImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -93,6 +101,7 @@
 - (void)dealloc {
     [imageView release];
     [numberButton release];
+    [bigImageView release];
     [super dealloc];
 }
 @end

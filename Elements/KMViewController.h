@@ -12,5 +12,6 @@
 @interface KMViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
 @property (retain, nonatomic) IBOutlet KMCounterView *numberButton;
+@property (retain, nonatomic) IBOutlet UIImageView *bigImageView;
 
 @end
