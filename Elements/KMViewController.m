@@ -9,8 +9,12 @@
 #import "KMViewController.h"
 #import "KMCloseButtonView.h"
 #import "KMCounterView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation KMViewController
+{
+    KMCounterView *counterView;
+}
 @synthesize imageView;
 @synthesize numberButton;
 
@@ -25,8 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    KMCounterView *counterView = [[KMCounterView alloc] initWithFrame:CGRectMake(-40, -40, 200, 200)];
-    [counterView performSelector:@selector(setText:) withObject:@"5" afterDelay:5.0];
+    counterView = [[KMCounterView alloc] initWithFrame:CGRectMake(-40, -40, 200, 200)];
+    [counterView setText:@"2"];
     [[self view] addSubview:counterView];
 
 	// Do any additional setup after loading the view, typically from a nib.
@@ -57,6 +61,16 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        counterView.frame = CGRectApplyAffineTransform(CGRectApplyAffineTransform(counterView.frame, CGAffineTransformMakeTranslation(200, 20.0)), CGAffineTransformMakeScale(0.5, 0.5));
+        counterView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        counterView.text = @"C";
+        [UIView animateWithDuration:1.0 animations:^{
+            counterView.alpha = 1.0;
+        }];
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

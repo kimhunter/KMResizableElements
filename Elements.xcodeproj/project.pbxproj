@@ -16,6 +16,7 @@
 		3B22FC2614DAA43B00D2A0D9 /* KMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22FC2514DAA43B00D2A0D9 /* KMViewController.m */; };
 		3B22FC2914DAA43B00D2A0D9 /* KMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B22FC2714DAA43B00D2A0D9 /* KMViewController.xib */; };
 		3B22FC3514DAC0FD00D2A0D9 /* KMCloseButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */; };
+		3BAD0AEA14DE27E300F68134 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAD0AE914DE27E300F68134 /* QuartzCore.framework */; };
 		3BC2CCE414DCB2BA00CC89E3 /* KMCounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2CCE314DCB2BA00CC89E3 /* KMCounterView.m */; };
 		3BC2CCE714DCB2E900CC89E3 /* disclosue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC2CCE614DCB2E900CC89E3 /* disclosue.png */; };
 /* End PBXBuildFile section */
@@ -36,7 +37,8 @@
 		3B22FC2814DAA43B00D2A0D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMViewController.xib; sourceTree = "<group>"; };
 		3B22FC3314DAC0FD00D2A0D9 /* KMCloseButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCloseButtonView.h; sourceTree = "<group>"; };
 		3B22FC3414DAC0FD00D2A0D9 /* KMCloseButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCloseButtonView.m; sourceTree = "<group>"; };
-		3BC2CCE214DCB2BA00CC89E3 /* KMCounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = KMCounterView.h; sourceTree = "<group>"; };
+		3BAD0AE914DE27E300F68134 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3BC2CCE214DCB2BA00CC89E3 /* KMCounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCounterView.h; sourceTree = "<group>"; };
 		3BC2CCE314DCB2BA00CC89E3 /* KMCounterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCounterView.m; sourceTree = "<group>"; };
 		3BC2CCE614DCB2E900CC89E3 /* disclosue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosue.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BAD0AEA14DE27E300F68134 /* QuartzCore.framework in Frameworks */,
 				3B22FC1314DAA43B00D2A0D9 /* UIKit.framework in Frameworks */,
 				3B22FC1514DAA43B00D2A0D9 /* Foundation.framework in Frameworks */,
 				3B22FC1714DAA43B00D2A0D9 /* CoreGraphics.framework in Frameworks */,
@@ -76,6 +79,7 @@
 		3B22FC1114DAA43B00D2A0D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BAD0AE914DE27E300F68134 /* QuartzCore.framework */,
 				3B22FC1214DAA43B00D2A0D9 /* UIKit.framework */,
 				3B22FC1414DAA43B00D2A0D9 /* Foundation.framework */,
 				3B22FC1614DAA43B00D2A0D9 /* CoreGraphics.framework */,
