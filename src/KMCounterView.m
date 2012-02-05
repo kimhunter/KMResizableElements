@@ -69,7 +69,6 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextClearRect(context, rect);
@@ -86,7 +85,7 @@
     CGContextSetLineWidth(context, mainRect.size.width * insetPercentage * 0.8);
 
     CGContextSaveGState(context);
-    CGContextSetShadow(context, CGSizeMake(0.0, 6.0), 10.0);
+    CGContextSetShadow(context, CGSizeMake(0.0, (r.size.width-mainRect.size.width)/5), (r.size.width-mainRect.size.width)/3);
     CGContextAddEllipseInRect(context, mainRect);
     CGContextDrawPath(context, kCGPathFillStroke);
     CGContextRestoreGState(context);
